@@ -11,8 +11,7 @@ import 'package:untitled2/cubit/state.dart';
 
 import '../screns_models/science_model.dart';
 import '../screns_models/sport_model.dart';
-import '../screnss/sport_screen.dart';
-import '../screnss/science_screen.dart';
+
 import '../Dio.dart';
 
 class Newscubit extends Cubit<Newsstate> {
