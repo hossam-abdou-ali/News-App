@@ -39,19 +39,9 @@ final model ;
                 itemBuilder: (context, index) =>
                InkWell(
                    onTap: () {
-
-                     /*debugPrint(articleModel!.articles![index].urlToImage.toString());
-                     debugPrint( articleModel!.articles![index].title.toString());
-                     var list = Newscubit.get(context);
-
-                     list.title=articleModel!.articles![index].title.toString();
-                     list.image=articleModel!.articles![index].urlToImage;
-
-                     debugPrint("list title ${list.title}");*/
-                     Navigator.push(
-                       context,
-                       MaterialPageRoute(
-                           builder: (context) => DetailsScreen(model: model, index: index,)),
+                     Navigator.push(context, MaterialPageRoute(
+                           builder: (context) => DetailsScreen(model: model, index: index,)
+                     ),
                      );
                    },
                    child: BottomItems(model, index,context)),

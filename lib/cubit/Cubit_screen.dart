@@ -1,47 +1,36 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled2/screns_models/search_model.dart';
-import 'package:untitled2/screnss/business_screen.dart';
 import 'package:untitled2/screns_models/business_model.dart';
-
 import 'package:untitled2/cubit/state.dart';
-
 import '../screns_models/science_model.dart';
 import '../screns_models/sport_model.dart';
-
 import '../Dio.dart';
+import 'package:rxdart/rxdart.dart';
+import 'dart:core';
+import 'dart:async';
+import 'dart:collection';
 
 class Newscubit extends Cubit<Newsstate> {
   Newscubit() :super(Newsintial());
 
   static Newscubit get(context) => BlocProvider.of(context);
 
-
-  String title='';
-  String image='';
   int currentIndex =0;
 
 
-  List <BottomNavigationBarItem> bottomItems =
-  [
+  List <BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(icon: Icon(Icons.business,),label:'business'),
     BottomNavigationBarItem(icon: Icon(Icons.sports),label:'Sports'),
     BottomNavigationBarItem(icon: Icon(Icons.science),label:'Science'),
   ];
 
-  void change(int index) {
-    emit(changestLoading());
-    currentIndex=index;
-    emit(changest());
-  }
 
   //object mn al class
   ArticleModel? articleModel;
-
   Future<void> businessBut() async{
+
     emit(GetBusinessLoading());
     await Diohelper.getData(
         url: 'v2/top-headlines',
@@ -98,7 +87,6 @@ class Newscubit extends Cubit<Newsstate> {
 
   }
 
-
   SportModel? sportModel;
   Future<void> SportBut() async{
 
@@ -128,26 +116,51 @@ class Newscubit extends Cubit<Newsstate> {
 
   }
 
+/*
 
+  final _searchmodel = BehaviorSubject<UnmodifiableListView<Searchmodel>>();
 
+  Stream<UnmodifiableListView<Searchmodel>> get search => _searchmodel.stream;
+*/
 
+  List<dynamic> search = [];
+
+  Future<void> getSearch(String value) async{
+    emit(searchloading());
+
+    await Diohelper.getData(
+      url: 'v2/everything',
+      query:
+      {
+        'q':'$value',
+        'apiKey':'65f7f556ec76449fa7dc7c0069f040ca',
+      },
+    ).then((value)
+    {
+      //print(value.data['articles'][0]['title']);
+      search = value.data['articles'];
+      print(search[0]['title']);
+
+      emit(searchSuc());
+    }).catchError((error){
+      print(error.toString());
+      emit(searchError(error.toString()));
+    });
+  }
   Searchmodel? searchmodel;
-
-  Future<void> searchbut(String value) async
-  {
+  Future<void> searchbut(value) async {
     emit(searchloading());
     await Diohelper.getData(
         url:'v2/everything',
         query:{
-          'q':'$value',
+          'q': value,
           'apiKey': 'e32c5033bb3e4dcfa93cf985b0c06c96',
         }
     ).then((value) {
       searchmodel = Searchmodel.fromJson(value.data);
-      print(value.data);
+      print('dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa${value.data}');
+
       print('Search yet');
-      /*business=value.data['articles'];
-      print(business[0]['title']);*/
       emit(searchSuc());
     }
     ).catchError((error)
@@ -160,4 +173,3 @@ class Newscubit extends Cubit<Newsstate> {
   }
 
 }
-

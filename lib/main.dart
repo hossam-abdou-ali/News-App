@@ -11,7 +11,6 @@ import 'bloc_observer.dart';
 
 void main() {
 
-
   Diohelper.init();
   Bloc.observer=MyBlocObserver();
   runApp( MyApp());
@@ -49,7 +48,8 @@ class MyApp extends StatelessWidget {
 
             backgroundColor: Colors.blueGrey,
             titleTextStyle: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold,color: Colors.white),
-            systemOverlayStyle: SystemUiOverlayStyle(statusBarIconBrightness:Brightness.light ,
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarIconBrightness:Brightness.light ,
               statusBarColor: Colors.grey, ),
             elevation: 0.0,
           ),
@@ -59,10 +59,10 @@ class MyApp extends StatelessWidget {
         ),
         darkTheme: ThemeData(
           primarySwatch: Colors.deepOrange,
-          scaffoldBackgroundColor: Color(0xFF32373A),
+          scaffoldBackgroundColor: Color(0xFF3A4450),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
               type: BottomNavigationBarType.fixed,
-              selectedItemColor: Colors.teal,
+              selectedItemColor: Colors.white,
               elevation: 20.0,
               backgroundColor:Color(0xFF333739)
           ),

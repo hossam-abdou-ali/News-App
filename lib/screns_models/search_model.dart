@@ -48,8 +48,7 @@ class Articles {
         this.content});
 
   Articles.fromJson(Map<String, dynamic> json) {
-    source =
-    json['source'] != null ? new Source.fromJson(json['source']) : null;
+    source = json['source'] != null ? new Source.fromJson(json['source']) : null;
     author = json['author'];
     title = json['title'];
     description = json['description'];
@@ -62,8 +61,7 @@ class Articles {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.source != null) {
-      data['source'] = this.source!.toJson();
-    }
+      data['source'] = this.source!.toJson();}
     data['author'] = this.author;
     data['title'] = this.title;
     data['description'] = this.description;

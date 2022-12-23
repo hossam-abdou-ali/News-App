@@ -10,10 +10,12 @@ Widget BottomItems(articleModel, index, context) => Padding(
           height: 100.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
+            image: articleModel!.articles![index].urlToImage != null ? DecorationImage(
                 image: NetworkImage(articleModel!.articles![index].urlToImage.toString()),
-                fit: BoxFit.cover),
-          )),
+                fit: BoxFit.cover) : const DecorationImage(
+                image: AssetImage("assets/images/simpson.png"), fit: BoxFit.cover),
+          )
+      ),
       SizedBox(
         width: 15.0,
       ),
@@ -34,7 +36,7 @@ Widget BottomItems(articleModel, index, context) => Padding(
               )),
               Text(
                 articleModel!.articles![index].publishedAt.toString(),
-                style: TextStyle(color: Colors.teal,fontWeight: FontWeight.bold),
+                style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
               ),
             ],
           ),

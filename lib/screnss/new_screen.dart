@@ -3,13 +3,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled2/cubit/second_cubit.dart';
 import 'package:untitled2/cubit/state.dart';
-import 'package:untitled2/cubit/state.dart';
 import 'package:untitled2/screnss/search_screen.dart';
-
 
 import '../component.dart';
 import '../cubit/Cubit_screen.dart';
-import '../cubit/state.dart';
 import 'business_screen.dart';
 
 
@@ -24,8 +21,6 @@ class _newsState extends State<news> {
   @override
   Widget build(BuildContext context) {
 
-
-
     return BlocProvider(
 
       create: (BuildContext context) => Newscubit()..businessBut()..ScienceBut()..SportBut(),
@@ -35,7 +30,10 @@ class _newsState extends State<news> {
         builder: (context,state)
         {
           var c = Newscubit.get(context);
-          List<Widget> screens = [ bus(model: c.articleModel),bus(model: c.sportModel),bus(model: c.scienceModel) ];
+          List<Widget> screens = [
+            bus(model: c.articleModel),
+            bus(model: c.sportModel),
+            bus(model: c.scienceModel) ];
 
 
           return Scaffold(
@@ -44,13 +42,13 @@ class _newsState extends State<news> {
                 actions: [
                   IconButton(onPressed:()
                   {
-                    // Navigateto(context,SearchScreen());
+                    Navigateto(context,SearchScreen());
 
                   },
 
-
                       icon: (Icon(Icons.search,color: Colors.black,))
                   ),
+
                   IconButton(onPressed:()
                   {
                     setState(() {
@@ -65,6 +63,7 @@ class _newsState extends State<news> {
               ),
 
               body: screens[c.currentIndex],
+
 
               bottomNavigationBar: BottomNavigationBar(
                 currentIndex:c.currentIndex,
