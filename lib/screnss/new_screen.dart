@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled2/cubit/second_cubit.dart';
 import 'package:untitled2/cubit/state.dart';
 import 'package:untitled2/screnss/search_screen.dart';
-
-import '../component.dart';
+import '../core/comp.dart';
 import '../cubit/Cubit_screen.dart';
 import 'business_screen.dart';
 
@@ -33,7 +31,8 @@ class _newsState extends State<news> {
           List<Widget> screens = [
             bus(model: c.articleModel),
             bus(model: c.sportModel),
-            bus(model: c.scienceModel) ];
+            bus(model: c.scienceModel)
+          ];
 
 
           return Scaffold(

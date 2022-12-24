@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled2/component.dart';
 import 'package:untitled2/cubit/state.dart';
 
+import '../core/comp.dart';
 import '../cubit/Cubit_screen.dart';
 import 'details_screen.dart';
 

@@ -31,8 +31,6 @@ class DetailsScreen extends StatelessWidget {
               children: [
                 Container(
 
-
-
                     width: 100.0,
                     height: 100.0,decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
@@ -49,12 +47,6 @@ class DetailsScreen extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15.0,color: Colors.teal), maxLines: 10,),
                 SizedBox(height: 10.0,),
-                Text(model.articles![index].url.toString(),
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15.0,color: Colors.teal), maxLines: 10,),
-
-
-
 
                 // Text(model.articles![index].url.toString(),
                 //   overflow: TextOverflow.ellipsis,

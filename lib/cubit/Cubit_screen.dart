@@ -1,16 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled2/screns_models/search_model.dart';
 import 'package:untitled2/screns_models/business_model.dart';
 import 'package:untitled2/cubit/state.dart';
 import '../screns_models/science_model.dart';
 import '../screns_models/sport_model.dart';
 import '../Dio.dart';
-import 'package:rxdart/rxdart.dart';
 import 'dart:core';
 import 'dart:async';
-import 'dart:collection';
 
 class Newscubit extends Cubit<Newsstate> {
   Newscubit() :super(Newsintial());
@@ -27,7 +24,7 @@ class Newscubit extends Cubit<Newsstate> {
   ];
 
 
-  //object mn al class
+  //object from the class
   ArticleModel? articleModel;
   Future<void> businessBut() async{
 
@@ -116,15 +113,7 @@ class Newscubit extends Cubit<Newsstate> {
 
   }
 
-/*
-
-  final _searchmodel = BehaviorSubject<UnmodifiableListView<Searchmodel>>();
-
-  Stream<UnmodifiableListView<Searchmodel>> get search => _searchmodel.stream;
-*/
-
   List<dynamic> search = [];
-
   Future<void> getSearch(String value) async{
     emit(searchloading());
 
@@ -147,29 +136,18 @@ class Newscubit extends Cubit<Newsstate> {
       emit(searchError(error.toString()));
     });
   }
-  Searchmodel? searchmodel;
-  Future<void> searchbut(value) async {
-    emit(searchloading());
-    await Diohelper.getData(
-        url:'v2/everything',
-        query:{
-          'q': value,
-          'apiKey': 'e32c5033bb3e4dcfa93cf985b0c06c96',
-        }
-    ).then((value) {
-      searchmodel = Searchmodel.fromJson(value.data);
-      print('dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa${value.data}');
+}
+//
+// Second cubit for the dark mode
+class modecubit extends Cubit<modestate> {
+  modecubit() :super(modeinitial());
 
-      print('Search yet');
-      emit(searchSuc());
-    }
-    ).catchError((error)
-    {
-      print(error.toString());
-      print('error here lllllkk');
-      emit(searchError(error.toString()) );
-    }
-    );
+  static modecubit get(context) => BlocProvider.of(context);
+
+  bool isDark=false;
+  void mode(){
+    debugPrint("mode");
+    isDark = !isDark;
+    emit(modeinitial());
   }
-
 }

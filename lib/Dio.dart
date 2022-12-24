@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 class Diohelper
 {
   static Dio? dio;
-
   static init() {
     dio = Dio(
         BaseOptions(

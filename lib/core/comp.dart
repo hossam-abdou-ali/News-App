@@ -179,16 +179,7 @@ Widget tasksBuilder({
   ),
 );
 
-Widget myDivider() => Padding(
-  padding: const EdgeInsetsDirectional.only(
-    start: 20.0,
-  ),
-  child: Container(
-    width: double.infinity,
-    height: 1.0,
-    color: Colors.grey[300],
-  ),
-);
+Widget myDivider() => Divider(thickness: 1, indent: 10, endIndent: 10, color: Colors.grey,);
 
 Widget buildArticleItem(article, context) => Padding(
   padding: const EdgeInsets.all(20.0),
@@ -253,9 +244,51 @@ Widget articleBuilder(list, context) => ConditionalBuilder(
   fallback: (context) => Center(child: CircularProgressIndicator()),
 );
 
-void navigateTo(context, widget) => Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => widget,
+
+Widget BottomItems(articleModel, index, context) => Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: Row(
+    children: [
+      Container(
+          width: 100.0,
+          height: 100.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: articleModel!.articles![index].urlToImage != null ? DecorationImage(
+                image: NetworkImage(articleModel!.articles![index].urlToImage.toString()),
+                fit: BoxFit.cover) : const DecorationImage(
+                image: AssetImage("assets/images/simpson.png"), fit: BoxFit.cover),
+          )
+      ),
+      SizedBox(
+        width: 15.0,
+      ),
+      Expanded(
+        child: Container(
+          height: 100,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                  child: Text(
+                    articleModel!.articles![index].title.toString(),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 15.0),
+                  )),
+              Text(
+                articleModel!.articles![index].publishedAt.toString(),
+                style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
   ),
+);
+
+void Navigateto(context, Widget) => Navigator.push(context,MaterialPageRoute(builder: (context) => Widget),
 );
