@@ -1,14 +1,8 @@
-
-
-
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled2/component.dart';
 import 'package:untitled2/cubit/state.dart';
-
 import '../core/comp.dart';
 import '../cubit/Cubit_screen.dart';
 import 'details_screen.dart';

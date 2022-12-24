@@ -179,7 +179,7 @@ Widget tasksBuilder({
   ),
 );
 
-Widget myDivider() => Divider(thickness: 1, indent: 10, endIndent: 10, color: Colors.grey,);
+Widget myDivider() => Divider(thickness: 2, indent: 10, endIndent: 10, color: Colors.grey,);
 
 Widget buildArticleItem(article, context) => Padding(
   padding: const EdgeInsets.all(20.0),
